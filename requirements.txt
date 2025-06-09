@@ -1,0 +1,6 @@
+Flask
+transformers
+torch
+scipy
+deep-translator
+gunicorn
