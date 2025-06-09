@@ -1,18 +1,26 @@
 from flask import Flask, request, jsonify
 from transformers import RobertaForSequenceClassification, RobertaTokenizer, pipeline
+from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
 from deep_translator import GoogleTranslator
 import re
 import os
 
 app = Flask(__name__)
-
+#for roberta model (for final deployment)
 # Load the RoBERTa model for sentiment analysis
+
+
 # model_name = "cardiffnlp/twitter-roberta-base-sentiment"
 model_name = "distilbert-base-uncased-finetuned-sst-2-english"
 
+#for roberta model (for final deployment)
+# tokenizer = RobertaTokenizer.from_pretrained(model_name)
+# model = RobertaForSequenceClassification.from_pretrained(model_name)
 
-tokenizer = RobertaTokenizer.from_pretrained(model_name)
-model = RobertaForSequenceClassification.from_pretrained(model_name)
+#for prototype test to deploy
+tokenizer = DistilBertTokenizer.from_pretrained(model_name)
+model = DistilBertForSequenceClassification.from_pretrained(model_name)
+
 
 # Create a sentiment-analysis pipeline
 sentiment_pipeline = pipeline("text-classification", model=model, tokenizer=tokenizer)

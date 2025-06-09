@@ -4,3 +4,4 @@ torch
 scipy
 deep-translator
 gunicorn
+protobuf
