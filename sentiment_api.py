@@ -8,7 +8,8 @@ app = Flask(__name__)
 
 # Load the RoBERTa model for sentiment analysis
 # model_name = "cardiffnlp/twitter-roberta-base-sentiment"
-model_name = "distilroberta-base"
+model_name = "distilbert-base-uncased-finetuned-sst-2-english"
+
 
 tokenizer = RobertaTokenizer.from_pretrained(model_name)
 model = RobertaForSequenceClassification.from_pretrained(model_name)
