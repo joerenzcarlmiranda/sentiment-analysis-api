@@ -2,11 +2,14 @@ from flask import Flask, request, jsonify
 from transformers import RobertaForSequenceClassification, RobertaTokenizer, pipeline
 from deep_translator import GoogleTranslator
 import re
+import os
 
 app = Flask(__name__)
 
 # Load the RoBERTa model for sentiment analysis
-model_name = "cardiffnlp/twitter-roberta-base-sentiment"
+# model_name = "cardiffnlp/twitter-roberta-base-sentiment"
+model_name = "distilroberta-base"
+
 tokenizer = RobertaTokenizer.from_pretrained(model_name)
 model = RobertaForSequenceClassification.from_pretrained(model_name)
 
@@ -155,4 +158,5 @@ def analyze_sentiment():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # get port from environment or default 5000
+    app.run(host='0.0.0.0', port=port)
