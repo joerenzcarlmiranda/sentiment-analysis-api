@@ -1,7 +1,5 @@
-Flask
+gradio
 transformers
 torch
-scipy
 deep-translator
-gunicorn
-protobuf
+
